@@ -34,7 +34,7 @@ let Blog = mongoose.model("Blog", blogSchema);
 app.get("/", (req, res) => {
     res.redirect("/blogs");
 });
-
+// INDEX ROUTE - show all blogs
 app.get("/blogs", (req, res) => {
     Blog.find({}, (err, blogs) => {
         if(err) {
@@ -43,6 +43,14 @@ app.get("/blogs", (req, res) => {
             res.render("index", { blogs: blogs });
         }
     })
+});
+// NEW ROUTE - render the form
+app.get("/blogs/new", (req, res) => {
+    res.render("new");
+});
+// CREATE ROUTE - render the form
+app.post("/blogs", (req, res) => {
+    res.render("new");
 });
 
 
