@@ -12,6 +12,23 @@ app.use(express.static("public")); // to be able to serve up assets
 
 
 
+// SCHEMA
+let blogSchema = new.mongoose.Schema({
+    title: String, 
+    image: String, 
+    body: String, 
+    created: {
+        type: String, 
+        default: Date.now
+    }
+});
+let Blog = mongoose.model("Blog", blogSchema);
+
+
+
+// RESTFUL ROUTES
+
+
 
 
 // Tell express to listen for requests -start server 
