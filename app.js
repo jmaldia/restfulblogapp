@@ -51,7 +51,6 @@ app.get("/blogs/new", (req, res) => {
 // CREATE ROUTE - process form
 app.post("/blogs", (req, res) => {
     // create blog
-    console.log(req.body.blog)
     Blog.create(req.body.blog, (err, newBlog) => {
         if (err) {
             res.render("new");
@@ -71,7 +70,28 @@ app.get("/blogs/:id", (req, res) => {
         }
     });
 });
-
+// EDIT ROUTE - edit blog details
+app.get("/blogs/:id/edit", (req, res) => {
+    // edit post
+    Blog.findById(req.params.id, (err, foundBlog) => {
+        if (err) {
+            res.redirect("/blogs");
+        } else {
+            res.render("edit", { blog: foundBlog });
+        }
+    });
+});
+// EDIT ROUTE PUT - edit blog details
+app.put("/blogs/:id", (req, res) => {
+    // edit post
+    Blog.create(req.body.blog, (err, newBlog) => {
+        if (err) {
+            res.render("new");
+        } else {
+            res.redirect("/blogs");
+        }
+    });
+});
 
 
 // Tell express to listen for requests -start server 
