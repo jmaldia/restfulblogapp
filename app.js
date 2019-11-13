@@ -48,9 +48,17 @@ app.get("/blogs", (req, res) => {
 app.get("/blogs/new", (req, res) => {
     res.render("new");
 });
-// CREATE ROUTE - render the form
+// CREATE ROUTE - process form
 app.post("/blogs", (req, res) => {
-    res.render("new");
+    // create blog
+    console.log(req.body.blog)
+    Blog.create(req.body.blog, (err, newBlog) => {
+        if (err) {
+            res.render("new");
+        } else {
+            res.redirect("/blogs");
+        }
+    });
 });
 
 
