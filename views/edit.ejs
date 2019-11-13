@@ -2,7 +2,8 @@
 
     <div class="ui main text container segment">
         <div class="ui huge header">Edit Blog Post</div>
-        <form class="ui form" action="/blogs/<%= blog._id %>" method="put">
+        <!-- Use method override to turn PUT to POST -->
+        <form class="ui form" action="/blogs/<%= blog._id %>?_method=PUT" method="POST">
             <div class="field">
                 <label for="">Title</label>
                 <input type="text" name="blog[title]" placeholder="Title" value="<%= blog.title %>" required>
@@ -22,7 +23,7 @@
     </div>
 
     <div class="ui main text container field">
-        <a href="/" class="ui basic"><< Back</a>
+        <a href="/blogs/<%= blog._id %>" class="ui basic"><< Back</a>
     </div>
 
 <% include partials/footer %>

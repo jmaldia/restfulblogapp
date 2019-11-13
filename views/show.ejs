@@ -4,20 +4,27 @@
         <div class="ui huge header"><%= blog.title %></div>
         <div class="ui top attached segment">
             <div class="item">
-                <img class="ui centerd rounded image" src="<%= blog.image %>" alt="blog.title">
+                <img class="ui centered rounded image" src="<%= blog.image %>" alt="blog.title">
                 <div class="content">
                     <span><%= blog.created.toDateString() %></span>
                 </div>
                 <div class="description">
                     <p><%= blog.body %></p>
                 </div>
+                <div class="ui group">
+                    <a href="/blogs/<%= blog._id %>/edit">
+                        <button class="ui green basic button item">Edit</button>
+                    </a>
+                    <form action="/blogs/<%= blog._id %>?_method=DELETE" method="post">
+                        <button class="ui red basic button item">Delete</button>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
 
     <div class="ui main text container field">
-        <a href="/" class="ui basic"><< Back</a> | 
-        <a href="/blogs/<% blog.id %>/edit" class="ui basic">Edit</a>
+        <a href="/blogs" class="ui basic"><< Back</a>
     </div>
 
 <% include partials/footer %>

@@ -5,3 +5,13 @@ i.icon {
 .container.main {
     margin-top: 6.0em;
 }
+
+.group {
+    margin-top: 1rem;
+    width: 100%;
+    display: flex;
+}
+
+.blog-post {
+    margin-bottom: 3rem;
+}
