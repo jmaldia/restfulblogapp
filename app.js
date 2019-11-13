@@ -18,7 +18,7 @@ let blogSchema = new mongoose.Schema({
     image: String, 
     body: String, 
     created: {
-        type: String, 
+        type: Date, 
         default: Date.now
     }
 });
@@ -57,6 +57,17 @@ app.post("/blogs", (req, res) => {
             res.render("new");
         } else {
             res.redirect("/blogs");
+        }
+    });
+});
+// SHOW ROUTE - show more details on blog
+app.get("/blogs/:id", (req, res) => {
+    // show post
+    Blog.findById(req.params.id, (err, foundBlog) => {
+        if (err) {
+            res.redirect("/blogs");
+        } else {
+            res.render("show", { blog: foundBlog });
         }
     });
 });

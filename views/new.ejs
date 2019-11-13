@@ -5,7 +5,7 @@
         <form class="ui form" action="/blogs" method="post">
             <div class="field">
                 <label for="">Post Title</label>
-                <input type="text" name="blog[title]" placeholder="Title">
+                <input type="text" name="blog[title]" placeholder="Title" required>
             </div>
             <div class="field">
                     <label for="">Image URL</label>
@@ -13,10 +13,10 @@
             </div>
             <div class="field">
                 <label for="">Blog Content</label>
-                <textarea name="blog[body]" id="" cols="10" placeholder="Blog post goes here"></textarea>
+                <textarea name="blog[body]" id="" cols="10" placeholder="Blog post goes here" required></textarea>
             </div>
             <div class="field">
-                <input type="submit" class="ui violet big basic button">
+                <input type="submit" class="ui green big basic button">
             </div>
         </form>
     </div>
