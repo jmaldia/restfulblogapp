@@ -9,11 +9,11 @@
                     <span><%= blog.created.toDateString() %></span>
                 </div>
                 <div class="description">
-                    <p><%= blog.body %></p>
+                    <p><%- blog.body %></p>
                 </div>
                 <div class="ui group">
                     <a href="/blogs/<%= blog._id %>/edit">
-                        <button class="ui green basic button item">Edit</button>
+                        <button class="ui yellow basic button item">Edit</button>
                     </a>
                     <form action="/blogs/<%= blog._id %>?_method=DELETE" method="post">
                         <button class="ui red basic button item">Delete</button>
@@ -24,7 +24,7 @@
     </div>
 
     <div class="ui main text container field">
-        <a href="/blogs" class="ui basic"><< Back</a>
+        <a href="/blogs" class="ui basic"><i class="left chevron icon"></i> Back</a>
     </div>
 
 <% include partials/footer %>

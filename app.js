@@ -1,15 +1,18 @@
 let bodyParser      = require("body-parser"),
     methodOverride  = require("method-override"),
+    expressSanitizer= require("express-sanitizer"),
     mongoose        = require("mongoose"),
     express         = require("express"),
 
     app             = express();
 
+// connect to the db
 mongoose.connect("mongodb://localhost:27017/restful_blog_app", {useNewUrlParser: true, useUnifiedTopology: true});
 
 app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public")); // to be able to serve up assets
+app.use(expressSanitizer()); // to prevent script injection
 app.use(methodOverride("_method"));
 
 
@@ -53,6 +56,7 @@ app.get("/blogs/new", (req, res) => {
 // CREATE ROUTE - process form
 app.post("/blogs", (req, res) => {
     // create blog
+    req.body.blog.body = req.sanitize(req.body.blog.body); // remove malicious code
     Blog.create(req.body.blog, (err, newBlog) => {
         if (err) {
             res.render("new");
@@ -86,6 +90,7 @@ app.get("/blogs/:id/edit", (req, res) => {
 // EDIT ROUTE PUT - edit blog details
 app.put("/blogs/:id", (req, res) => {
     // edit post
+    req.body.blog.body = req.sanitize(req.body.blog.body); // remove malicious code
     Blog.findByIdAndUpdate(req.params.id, req.body.blog, (err, updatedBlog) => {
         if (err) {
             res.redirect("/blogs");
